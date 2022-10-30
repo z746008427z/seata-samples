@@ -1,3 +1,18 @@
+/*
+ *  Copyright 1999-2021 Seata.io Group.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 package io.seata.samples.tcc.transfer.env;
 
 import java.sql.Connection;
@@ -40,6 +55,7 @@ public class TransferDataPrepares {
 
     /**
      * 初始化账户数据
+     *
      * @param dataSource
      * @param accountNo
      * @param amount
@@ -55,10 +71,10 @@ public class TransferDataPrepares {
             ps.setDouble(3, 0);
             ps.executeUpdate();
             ps.close();
-        }catch (Throwable t){
+        } catch (Throwable t) {
             t.printStackTrace();
-        }finally {
-            if(conn != null){
+        } finally {
+            if (conn != null) {
                 conn.close();
             }
         }
@@ -66,9 +82,10 @@ public class TransferDataPrepares {
 
     /**
      * 初始化表结构
+     *
      * @param dataSource
      */
-    protected void prepareTable(DataSource dataSource){
+    protected void prepareTable(DataSource dataSource) {
         Connection conn = null;
         try {
             conn = dataSource.getConnection();
@@ -77,14 +94,20 @@ public class TransferDataPrepares {
                 s.execute("drop table business_activity");
             } catch (Exception e) {
             }
-            s.execute("CREATE TABLE  business_activity  ( tx_id  varchar(128) NOT NULL , gmt_create  TIMESTAMP(6) , gmt_modified  TIMESTAMP(6) , instance_id  varchar(128)  , business_type  varchar(32) , business_id  varchar(128)  , state  varchar(2) , app_name  varchar(32) ,  timeout  int(11) ,  context  varchar(2000) , is_sync  varchar(1) , PRIMARY KEY ( tx_id )) ");
+            s.execute("CREATE TABLE  business_activity  ( tx_id  varchar NOT NULL , gmt_create  TIMESTAMP , "
+                + "gmt_modified  TIMESTAMP , instance_id  varchar  , business_type  varchar , "
+                + "business_id  varchar  , state  varchar , app_name  varchar ,  timeout  int ,  "
+                + "context  varchar , is_sync  varchar ) ");
             System.out.println("创建 business_activity 表成功");
 
             try {
                 s.execute("drop table business_action");
             } catch (Exception e) {
             }
-            s.execute("CREATE TABLE  business_action  (  tx_id  varchar(128) , action_id  varchar(64)  , gmt_create  TIMESTAMP(6)  , gmt_modified  TIMESTAMP(6) , instance_id  varchar(128)  , rs_id  varchar(128) , rs_desc  varchar(512) , rs_type  smallint(6)  , state  varchar(2) , context  varchar(2000) , PRIMARY KEY ( action_id ))");
+            s.execute("CREATE TABLE  business_action  (  tx_id  varchar , action_id  varchar  , gmt_create  "
+                + "TIMESTAMP  , gmt_modified  TIMESTAMP , instance_id  varchar  , rs_id  varchar "
+                + ", rs_desc  varchar , rs_type  smallint  , state  varchar , context  varchar "
+                + " )");
             System.out.println("创建 business_action 表成功");
 
             //账户余额表
@@ -92,7 +115,8 @@ public class TransferDataPrepares {
                 s.execute("drop table account");
             } catch (Exception e) {
             }
-            s.execute("create table account(account_no varchar(256), amount DOUBLE,  freezed_amount DOUBLE, PRIMARY KEY (account_no))");
+            s.execute(
+                "create table account(account_no varchar, amount DOUBLE,  freezed_amount DOUBLE)");
             System.out.println("创建account表成功");
             System.out.println();
         } catch (Exception e) {

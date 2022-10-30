@@ -30,7 +30,7 @@
         <module>samples-common</module>
         <module>samples-account</module>
         <module>samples-order</module>
-        <module>samples-storage</module>
+        <module>samples-stock</module>
         <module>samples-business</module>
     </modules>
 
@@ -135,6 +135,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.1.0.M1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.28</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

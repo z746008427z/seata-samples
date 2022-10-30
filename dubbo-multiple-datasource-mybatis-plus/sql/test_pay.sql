@@ -1,55 +1,28 @@
-/*
-Navicat MySQL Data Transfer
+-- test_pay.account definition
 
-Source Server         : mysql
-Source Server Version : 50721
-Source Host           : localhost:3306
-Source Database       : test_pay
-
-Target Server Type    : MYSQL
-Target Server Version : 50721
-File Encoding         : 65001
-
-Date: 2019-12-08 15:11:05
-*/
-
-SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for account
--- ----------------------------
-DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(255) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `last_update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `sum` int(11) DEFAULT NULL,
+  `sum` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- ----------------------------
--- Records of account
--- ----------------------------
-INSERT INTO `account` VALUES ('1', '1', '2019-12-08 15:05:05', '1');
+INSERT INTO account (user_name, last_update_time, sum)
+VALUES('', CURRENT_TIMESTAMP, 0);
 
--- ----------------------------
--- Table structure for undo_log
--- ----------------------------
-DROP TABLE IF EXISTS `undo_log`;
+-- test_pay.undo_log definition
+
 CREATE TABLE `undo_log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `branch_id` bigint(20) NOT NULL,
-  `xid` varchar(100) NOT NULL,
-  `context` varchar(128) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `branch_id` bigint NOT NULL,
+  `xid` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `context` varchar(128) CHARACTER SET utf8 NOT NULL,
   `rollback_info` longblob NOT NULL,
-  `log_status` int(11) NOT NULL,
+  `log_status` int NOT NULL,
   `log_created` datetime NOT NULL,
   `log_modified` datetime NOT NULL,
-  `ext` varchar(100) DEFAULT NULL,
+  `ext` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ux_undo_log` (`xid`,`branch_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of undo_log
--- ----------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

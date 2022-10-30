@@ -36,7 +36,7 @@
         <base-core-starter.version>1.0.0-SNAPSHOT</base-core-starter.version>
         <base-jdbc-starter.version>1.0.0-SNAPSHOT</base-jdbc-starter.version>
         <base-transaction-starter.version>1.0.0-SNAPSHOT</base-transaction-starter.version>
-        <fastjson.version>1.2.75</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <mybatis-plus.version>3.4.1</mybatis-plus.version>
         <druid.version>1.1.22</druid.version>
         <postgresql.version>42.2.6</postgresql.version>
@@ -259,13 +259,13 @@
                 <!--配置文件前缀-->
                 <prefix.name>yzs</prefix.name>
                 <!--Nacos配置中心地址-->
-                <config.server-addr>192.168.1.188:8848</config.server-addr>
+                <config.server-addr>127.0.0.1:8848</config.server-addr>
                 <!--Nacos配置中心命名空间,用于支持多环境.这里必须使用ID，不能使用名称,默认为空-->
                 <config.namespace></config.namespace>
                 <!--Nacos配置分组名称-->
                 <config.group>DEFAULT_GROUP</config.group>
                 <!--Nacos服务发现地址-->
-                <discovery.server-addr>192.168.1.188:8848</discovery.server-addr>
+                <discovery.server-addr>127.0.0.1:8848</discovery.server-addr>
             </properties>
         </profile>
         <!-- 测试 -->
